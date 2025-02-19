@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Install poppler-utils for pdf-poppler
-apt-get update
-apt-get install -y poppler-utils
+echo "Starting build script..."
+apt-get update && apt-get install -y poppler-utils
+echo "Poppler-utils installed successfully."
 
-# Install Tesseract dependencies (optional but recommended)
 apt-get install -y tesseract-ocr libtesseract-dev
+echo "Tesseract installed successfully."
 
-# Install node modules
 npm install
+echo "Node modules installed successfully."

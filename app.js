@@ -6,6 +6,8 @@ const Tesseract = require("tesseract.js");
 const fs = require("fs");
 const path = require("path");
 const poppler = require("pdf-poppler");
+require('dotenv').config();
+
 
 const app = express();
 app.use(cors());
@@ -19,7 +21,7 @@ if (!fs.existsSync(uploadDir)) {
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/uploads")
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -110,7 +112,9 @@ app.get("/files", async (req, res) => {
 });
 
 // Start Server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+
